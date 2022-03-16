@@ -11,6 +11,13 @@ const app = express()
     let id: number = 0
 }*/
 
+let notes = [{
+    id: 1,
+    title: 'aa'
+}]
+
+let note = notes.find(note =>   )
+
 app.use(express.json())
 
 app.get('/', function (req: Request, res: Response) {
