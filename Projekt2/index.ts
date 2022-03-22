@@ -23,7 +23,7 @@ const notes : Note[] =[
   }
 ]
 
-app.get('/note/:id', function (req: Request, res: Response) {
+app.get('/:note/:id', function (req: Request, res: Response) {
   const id = parseInt(req.params.id)
 
   if(notes.findIndex(note=>note.id == id)){
