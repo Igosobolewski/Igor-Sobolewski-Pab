@@ -23,6 +23,15 @@ const notes : Note[] =[
   }
 ]
 
+app.get('/note/:id', function (req: Request, res: Response) {
+  const id = parseInt(req.params.id)
+
+  if(notes.findIndex(note=>note.id == id)){
+    res.sendStatus(200).send(notes.findIndex(note=>note.id == id))
+  }else {
+    res.sendStatus(404).send("no object")
+  }
+})
 
 
 app.listen(3000)
