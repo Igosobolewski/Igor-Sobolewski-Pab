@@ -1,6 +1,7 @@
 import express from 'express'
 import {Request, Response} from 'express'
 
+
 const app = express()
 
 app.use(express.json())
@@ -13,19 +14,31 @@ interface Note {
   tags: string[];
 }
 
+interface Tag {
+  id?: number;
+  name: string;
+}
+
 const notes : Note[] =[
   {
     id: 1,
-    title: "test",
+    title: "testufoporno",
     content: "this is a test note",
     createDate: "rndDate",
-    tags: ["tag1"]
+    tags:['Poniedzialek']
   }
 ]
 
-app.get('/:note/:id', function (req: Request, res: Response) {
+const Tags : Tag[] =[
+  {
+    id: 1,
+    name: 'Test'
+  }
+]
+
+app.get('/:notes/:tags', function (req: Request, res: Response) {
   
-  const id = parseInt(req.params.id)
+  const id = parseInt(req.body.id)
 
   if(notes.findIndex(note=>note.id == id)){
     res.sendStatus(200).send(notes.findIndex(note=>note.id == id))
@@ -34,8 +47,9 @@ app.get('/:note/:id', function (req: Request, res: Response) {
   }
 })
 
-app.post('/note', function (req: Request, res: Response) {
+app.post('/:notes/:tags', function (req: Request, res: Response) {
   const data = new Date().toISOString()
+  const tags = req.body.tags
   const id = req.body.id == null? Date.now(): req.body.id
   const newNote : Note =
   {
@@ -45,6 +59,20 @@ app.post('/note', function (req: Request, res: Response) {
     createDate : data,
     tags : req.body.tags
   }
+
+  const newTag : Tag = {
+    id : id,
+    name : req.params.name
+  }
+
+  if(newTag.name !== null && newTag.id !== null) {
+    Tags.push(newTag)
+    console.log(req.body)
+    res.sendStatus(201).send(newTag.id)
+  }else {
+    res.sendStatus(404).send('Object not found')
+  }
+
   if(newNote.title!==null && newNote.content!==null)
   {
     notes.push(newNote);
@@ -55,7 +83,8 @@ app.post('/note', function (req: Request, res: Response) {
   }
   })
 
-  app.put('/note/:id', function (req: Request, res: Response) {
+
+  app.put('/note/:tags', function (req: Request, res: Response) {
     const id = parseInt(req.body.id)
     if(notes.findIndex(note=>note.id == id)){
       notes[notes.findIndex(note=>note.id == id)] = req.body;
@@ -64,6 +93,8 @@ app.post('/note', function (req: Request, res: Response) {
       res.sendStatus(404).send("no object")
     }
   })
+
+  /*[]
   
   app.delete('/note/:id', function(req: Request, res: Response){
     const id = parseInt(req.body.id)
@@ -74,6 +105,6 @@ app.post('/note', function (req: Request, res: Response) {
       res.sendStatus(404).send("no object")
     }
   })
+*/
 
-
-app.listen(3000)
+app.listen(3000) 
