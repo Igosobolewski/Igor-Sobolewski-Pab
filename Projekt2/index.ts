@@ -1,6 +1,6 @@
+import { Console } from 'console'
 import express from 'express'
 import {Request, Response} from 'express'
-
 
 const app = express()
 
@@ -36,7 +36,7 @@ const Tags : Tag[] =[
   }
 ]
 
-app.get('/:notes/:tags', function (req: Request, res: Response) {
+app.get('/:notes/:tags', async function (req: Request, res: Response) {
   
   const id = parseInt(req.body.id)
 
