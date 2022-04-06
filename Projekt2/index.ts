@@ -19,10 +19,11 @@ interface Tag {
   name: string;
 }
 
+
 const notes : Note[] =[
   {
     id: 1,
-    title: "testufoporno",
+    title: "test",
     content: "this is a test note",
     createDate: "rndDate",
     tags:['Poniedzialek']
@@ -36,10 +37,13 @@ const Tags : Tag[] =[
   }
 ]
 
-app.get('/:notes/:tags', async function (req: Request, res: Response) {
+
+app.get('/notes', async function (req: Request, res: Response) {
   
   const id = parseInt(req.body.id)
+  const PrivateNote = require("../customMiddlewares/PrivateNote")
 
+  
   if(notes.findIndex(note=>note.id == id)){
     res.sendStatus(200).send(notes.findIndex(note=>note.id == id))
   }else {
@@ -47,7 +51,7 @@ app.get('/:notes/:tags', async function (req: Request, res: Response) {
   }
 })
 
-app.post('/:notes/:tags', function (req: Request, res: Response) {
+app.post('/note', function (req: Request, res: Response) {
   const data = new Date().toISOString()
   const tags = req.body.tags
   const id = req.body.id == null? Date.now(): req.body.id
@@ -84,7 +88,7 @@ app.post('/:notes/:tags', function (req: Request, res: Response) {
   })
 
 
-  app.put('/note/:tags', function (req: Request, res: Response) {
+  app.put('/note', function (req: Request, res: Response) {
     const id = parseInt(req.body.id)
     if(notes.findIndex(note=>note.id == id)){
       notes[notes.findIndex(note=>note.id == id)] = req.body;
@@ -94,9 +98,10 @@ app.post('/:notes/:tags', function (req: Request, res: Response) {
     }
   })
 
-  /*[]
+
+ 
   
-  app.delete('/note/:id', function(req: Request, res: Response){
+  app.delete('/note', function(req: Request, res: Response){
     const id = parseInt(req.body.id)
     if(notes.find(note=>note.id == id)){
       res.sendStatus(200).send(notes.findIndex(note=>note.id == id))
@@ -105,6 +110,11 @@ app.post('/:notes/:tags', function (req: Request, res: Response) {
       res.sendStatus(404).send("no object")
     }
   })
-*/
 
-app.listen(3000) 
+  const PORT = 3001;
+
+  app.listen(PORT, () => {
+    console.log(`App running on ${PORT}`)
+  })
+
+  
