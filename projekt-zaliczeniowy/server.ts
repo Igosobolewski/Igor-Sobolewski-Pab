@@ -13,6 +13,7 @@ DB.once('open', () => console.log('Connected to the database!'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'))
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 

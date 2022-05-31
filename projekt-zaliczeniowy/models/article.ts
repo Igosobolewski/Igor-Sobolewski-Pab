@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const articleSchema = new mongoose.Schema({
     title: {
-        required: true,
         type: String
     },
     description: {
@@ -11,7 +10,7 @@ const articleSchema = new mongoose.Schema({
     },
     markdown: {
         type: String,
-        required: true
+    
     },
     createdAt: {
         type: Date,
