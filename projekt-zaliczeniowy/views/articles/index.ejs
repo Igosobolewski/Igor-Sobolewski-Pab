@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.scss" rel="stylesheet" type="text/css">
+    <title>Blog</title>
+</head>
+
+<style>
+    .Info {
+        height: 150px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px black solid;
+    }
+    
+    .Info h2 {
+        font-weight: 100;
+    }
+    
+    .Info img {
+        background-repeat: no-repeat;
+        height: 100px;
+        margin-left: 20px;
+        transition: 300ms ease;
+        cursor: pointer;
+    }
+    
+    .Info img:hover {
+        opacity: 50%;
+        transition: 300ms ease;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .Container {
+        height: 120vh;
+        background-color: rgb(255, 149, 11);
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .Head {
+        transform: translate(-20px);
+        transition: all 200ms ease;
+        margin-bottom: 5px;
+    }
+    
+    .Head:hover {
+        transition: all 200ms ease;
+        transform: translate(20px);
+    }
+    
+    .New-btn {
+        color: #fff;
+        box-shadow: 4px 3px black;
+        padding: 20px;
+        text-decoration: none;
+        background-color: rgb(48, 46, 46);
+        transition: 200ms ease-in-out;
+    }
+    
+    .New-btn:hover {
+        transition: 200ms ease-in-out;
+        opacity: 60%;
+    }
+    
+    .header1 {
+        border-bottom: 2px black solid;
+    }
+    
+    footer {
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div>
+        <Header class="Info">
+            <h2>Hello and welcome to my most recent blog!</h2>
+            <img src="https://www.lunapic.com/editor/premade/transparent.gif" alt="">
+        </Header>
+    </div>
+    <div class="Container">
+        <header class="header1">
+            <h1 class="Head">Blog Articles</h1>
+        </header>
+        <a href="/articles/new" class="New-btn">New Article</a>
+
+        <% articles.forEach(article => { %>
+            <div>
+                <div>
+                    <h4>
+                        <%= article.title %>
+                    </h4>
+                    <div>
+                        <%= article.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div>
+                        <%= article.description %>
+                    </div>
+                    <a href="articles/<%= article.id %>">Read More</a>
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="post">
+                        <button type="submit">DELETE</button>
+                    </form>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+    <footer>
+        <p>All Rights reserved to Igor Sobolewski S.A</p>
+    </footer>
+</body>
+
+</html>

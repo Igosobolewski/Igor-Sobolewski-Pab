@@ -1,0 +1,115 @@
+<style>
+    * {
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .Forms {
+        margin-top: -70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .Title label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Title input {
+        width: 150px;
+        height: 20px;
+    }
+    
+    .Description label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Description textarea {
+        width: 150px;
+        height: 20px;
+        border: 1.5px solid black;
+    }
+    
+    .Markdown label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Markdown textarea {
+        width: 150px;
+        height: 20px;
+        border: 1.5px solid black;
+    }
+    
+    .Submits {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        gap: 20px;
+    }
+    
+    .Submits a {
+        text-decoration: none;
+        border: 1.5px solid black;
+        padding: 5px;
+    }
+    
+    .Submits a:hover {
+        background-color: blue;
+        color: white
+    }
+    
+    .Submits button {
+        border: 1.5px solid black;
+        padding: 7px;
+        width: 200px;
+        transition: 200ms ease in;
+        cursor: pointer;
+    }
+    
+    .Submits button:hover {
+        background-color: aqua;
+        transition: 200ms ease in;
+    }
+    
+    p {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+
+<div class="Forms">
+    <div class="Title">
+        <label for="title">Title</label>
+        <input required value="<%= article.title %>
+        " type="text" name="title" id="title">
+    </div>
+    <div class="Description">
+        <label for="description">Description</label>
+        <textarea name="description" id="description">
+            <%= article.description %>
+        </textarea>
+    </div>
+    <div class="Markdown">
+        <label for="markdown">Markdown</label>
+        <textarea required name="markdown" id="markdown">
+            <%= article.markdown %>
+        </textarea>
+    </div>
+</div>
+<div class="Submits">
+    <a href="/" class="Cancel">Cancel</a>
+    <button type="submit" class="Submit">Save</button>
+</div>
+<footer>
+    <p>All Rights reserved to Igor Sobolewski S.A</p>
+</footer>

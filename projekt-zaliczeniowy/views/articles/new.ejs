@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+
+<style>
+    .Container h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 130px;
+        border-bottom: 1px solid black;
+    }
+</style>
+
+<body>
+    <div class="Container">
+        <h1>Create New Article</h1>
+    </div>
+    <form action="/articles" method="post">
+        <%- include('_form_fields') %>
+    </form>
+</body>
+
+</html>
